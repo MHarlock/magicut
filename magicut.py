@@ -41,7 +41,7 @@ class MagiCut:
         self.delete = delete
         # overwrite destination file if already exist
         self.overwrite = overwrite
-        self._tmp_Overwrite = False
+        self._tmp_Overwrite = False  # temporary Overwrite if destination file exist and has different mime
         # if not self.overwrite set as rename (not overwrite and not rename means skip don't save)
         self.rename = rename if not overwrite else False
 
