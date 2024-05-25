@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1d5fc5e-4b38-4bd7-b751-e2c6ab8a7320" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/magicut.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/magicut.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/magicut.save.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/magicut.save.v2.py" afterDir="false" />
+    <list default="true" id="a1d5fc5e-4b38-4bd7-b751-e2c6ab8a7320" name="Changes" comment="add parameters directories source and destination">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magicut.py" beforeDir="false" afterPath="$PROJECT_DIR$/magicut.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,11 +34,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.magicut.executor": "Run",
+    "Python.magicut.executor": "Debug",
+    "Python.magicut.v2.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/kirk/Projects/magicut",
+    "last_opened_file_path": "/media/public/Seagate/Multimedia_magicut/Serie",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
@@ -55,7 +48,29 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.magicut.v2">
+  <component name="RunManager" selected="Python.magicut">
+    <configuration name="magicut" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="magicut" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magicut.py" />
+      <option name="PARAMETERS" value="$FilePrompt$ $FilePrompt$ -r" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="magicut.v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="magicut" />
       <option name="ENV_FILES" value="" />
@@ -69,7 +84,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magicut.v2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/old versions/magicut.v2.py" />
       <option name="PARAMETERS" value="$FilePrompt$ $FilePrompt$" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -80,6 +95,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.magicut" />
         <item itemvalue="Python.magicut.v2" />
       </list>
     </recent_temporary>
@@ -100,37 +116,55 @@
       <option name="presentableId" value="Default" />
       <updated>1711798075907</updated>
     </task>
+    <task id="LOCAL-00001" summary="add parameters directories source and destination">
+      <option name="closed" value="true" />
+      <created>1715440283987</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715440283987</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add parameters directories source and destination" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parameters directories source and destination" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <condition expression="filename == &quot;/media/public/Seagate/Multimedia_magicut/Movie/Anime/The Super Mario Bros. - Il Film (2023) [Bluray 1080p AVC Eng Deu TrueHD Atmos 7.1 - Ita E-Ac3 7.1 - Eng Ac3 2.0 - Eng Deu Ita Subs]/ANY!/CPSUnit00003.cci&quot;" language="Python" mode="CODE_FRAGMENT" />
-          <url>file://$PROJECT_DIR$/magicut.save.py</url>
-          <line>16</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/magicut.py</url>
+          <line>168</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/magicut.py</url>
-          <line>46</line>
-          <option name="timeStamp" value="7" />
+          <line>176</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magicut.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magicut.py</url>
+          <line>130</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="python-exception">
           <condition expression="filename == &quot;/media/public/Seagate/Multimedia_magicut/Movie/Anime/The Super Mario Bros. - Il Film (2023) [Bluray 1080p AVC Eng Deu TrueHD Atmos 7.1 - Ita E-Ac3 7.1 - Eng Ac3 2.0 - Eng Deu Ita Subs]/ANY!/CPSUnit00003.cci&quot;" language="Python" />
           <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="condition" value="filename == &quot;/media/public/Seagate/Multimedia_magicut/Movie/Anime/The Super Mario Bros. - Il Film (2023) [Bluray 1080p AVC Eng Deu TrueHD Atmos 7.1 - Ita E-Ac3 7.1 - Eng Ac3 2.0 - Eng Deu Ita Subs]/ANY!/CPSUnit00003.cci&quot;" />
             <option name="notifyOnTerminate" value="true" />
+            <option name="myCondition" value="filename == &quot;/media/public/Seagate/Multimedia_magicut/Movie/Anime/The Super Mario Bros. - Il Film (2023) [Bluray 1080p AVC Eng Deu TrueHD Atmos 7.1 - Ita E-Ac3 7.1 - Eng Ac3 2.0 - Eng Deu Ita Subs]/ANY!/CPSUnit00003.cci&quot;" />
           </properties>
         </breakpoint>
       </default-breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="source_dir.strip('/')" language="Python" />
-        <watch expression="dest_subdir.strip('/')" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
