@@ -105,10 +105,7 @@ class MagiCut:
                 print(f'Skip cutting, destination "{dest}" already exist, files have same mime '
                       f'and you have chosen not to overwrite or rename.')
                 return ''
-            if self.rename:
-                dest_mime = None
-        else:
-            dest_mime = None
+        dest_mime = None
 
         dest_tmp = f'{dest}{self.suffix}'
         fdout = open(dest_tmp, "wb")
