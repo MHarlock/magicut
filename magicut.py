@@ -41,6 +41,7 @@ class MagiCut:
         self.delete = delete
         # overwrite destination file if already exist
         self.overwrite = overwrite
+        self._tmp_Overwrite = False
         # if not self.overwrite set as rename (not overwrite and not rename means skip don't save)
         self.rename = rename if not overwrite else False
 
@@ -98,14 +99,19 @@ class MagiCut:
         source = os.path.join(source_path, source_file)
         dest = os.path.join(self.make_path(source_path, dest_path), source_file)
         source_mime = magic.from_file(source, mime=True)
-        if os.path.exists(dest):
-            dest_mime = magic.from_file(dest, mime=True)
-            if not self.overwrite and not self.rename and (source_mime == dest_mime):
-                # skip, not overwrite and not rename means skip don't save
-                print(f'Skip cutting, destination "{dest}" already exist, files have same mime '
-                      f'and you have chosen not to overwrite or rename.')
-                return ''
-        dest_mime = None
+        if self.overwrite != self.rename:  # when only one (exclusive or XOR) is True
+            dest_mime = None
+        else:  # overwrite and rename are both False (skip o tmp_Overwrite)
+            # or both True (error condition but should be bypassed by self.rename declaration in __init__)
+            if os.path.exists(dest):
+                dest_mime = magic.from_file(dest, mime=True)
+                if source_mime == dest_mime:  # and not self.overwrite and not self.rename
+                    # skip, not overwrite and not rename means skip don't save
+                    print(f'Skip cutting, destination "{dest}" already exist, files have same mime '
+                          f'and you have chosen not to overwrite or rename.')
+                    return ''
+                self._tmp_Overwrite = True
+            dest_mime = None
 
         dest_tmp = f'{dest}{self.suffix}'
         fdout = open(dest_tmp, "wb")
@@ -129,7 +135,8 @@ class MagiCut:
         if suffix == self.suffix:
             if os.path.exists(dest_pathname):
                 if os.path.isfile(dest_pathname):
-                    if self.overwrite:
+                    if self.overwrite or self._tmp_Overwrite:
+                        self._tmp_Overwrite = False
                         return os.replace(destination, dest_pathname)
                     elif self.rename:
                         num = 0
