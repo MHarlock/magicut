@@ -99,12 +99,14 @@ class MagiCut:
         dest = os.path.join(self.make_path(source_path, dest_path), source_file)
         source_mime = magic.from_file(source, mime=True)
         if os.path.exists(dest):
-            if not self.overwrite and not self.rename:
+            dest_mime = magic.from_file(dest, mime=True)
+            if not self.overwrite and not self.rename and (source_mime == dest_mime):
                 # skip, not overwrite and not rename means skip don't save
-                print(f'Skip cutting, destination "{dest}" already exist '
+                print(f'Skip cutting, destination "{dest}" already exist, files have same mime '
                       f'and you have chosen not to overwrite or rename.')
                 return ''
-            dest_mime = magic.from_file(dest, mime=True)
+            if self.rename:
+                dest_mime = None
         else:
             dest_mime = None
 
@@ -141,8 +143,8 @@ class MagiCut:
                             num += 1
                         return os.replace(destination, dest_new_pathname)
                     else:
-                        raise FileExistsError(f'Destination "{dest_pathname}" already exist and '
-                                              f'you have chosen not to overwrite or rename.')
+                        print(f'Destination "{dest_pathname}" already exist and '
+                              f'you have chosen not to overwrite or rename.')
                 else:
                     raise FileExistsError(f'Destination "{dest_pathname}" already exist and is a directory.')
             else:
