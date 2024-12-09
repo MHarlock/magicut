@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import shutil
 import argparse
 import magic
 
@@ -21,7 +22,9 @@ class bcolors:  # class for print colored on ANSI terminal
 class MagiCut:
     def __init__(self, source=None, destination=None, delete=False, overwrite=False, rename=True):
 
-        self.col, self.row = os.get_terminal_size()
+        self.col, self.row = shutil.get_terminal_size(fallback=(0, 0)) # os.get_terminal_size()
+        if self.col == 0 or self.row == 0:
+            print(f'This is not a terminal!!')
         if source is None and destination is None:
             mc_parser = argparse.ArgumentParser()
             mc_parser.add_argument("source",
@@ -70,9 +73,11 @@ class MagiCut:
             else:
                 self.filename = ''
                 self.source_path = os.path.abspath(source)
+            os.chdir(self.source_path)
+            print(f'CWD: {os.getcwd()}')
         else:
             raise FileNotFoundError(source)
-
+        print(f'__init__ source: {source} - self.source: {self.source_path} - filename: {self.filename}')
         self.same = self.isSame(self.source_path, self.dest_path)
 
     def isSame(self, source: str, dest: str):
@@ -98,13 +103,14 @@ class MagiCut:
                     subdir = os.path.join('/', subdir)
                     break
                 subdir = os.path.join(str(src_tail), subdir)
-
             # if source and subdir are same path means there isn't a common piece of path or single dirname
             # between source and dest so only last dirname of source will be added to destination path
             if self.isSame(subdir, source) or src_tmp == '':  # instead os.path.samefile()
                 _, subdir = os.path.split(source)
             if not os.path.exists(os.path.join(dest, subdir)):
                 os.makedirs(os.path.join(dest, subdir))
+            print(f'make_path: src_tmp: {src_tmp} - tail:{tail}\n           dest: {dest} - subdir: {subdir}')
+            input("wait enter to continue ...")
             return os.path.join(str(dest), subdir)
 
     def cut(self, source_path, source_file, dest_path):  # source_file = source full pathname; dest_file o dest_path ?
