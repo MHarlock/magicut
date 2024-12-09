@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import os
 import argparse
 import magic
@@ -6,10 +7,21 @@ import magic
 """ this app is only for cutting file, to take his 'magic number' and 'filename' intact for study how parse mediafile 
 information from filename and mime """
 
+class bcolors:  # class for print colored on ANSI terminal
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
 class MagiCut:
     def __init__(self, source=None, destination=None, delete=False, overwrite=False, rename=True):
 
+        self.col, self.row = os.get_terminal_size()
         if source is None and destination is None:
             mc_parser = argparse.ArgumentParser()
             mc_parser.add_argument("source",
@@ -98,6 +110,10 @@ class MagiCut:
     def cut(self, source_path, source_file, dest_path):  # source_file = source full pathname; dest_file o dest_path ?
         source = os.path.join(source_path, source_file)
         dest = os.path.join(self.make_path(source_path, dest_path), source_file)
+        if len(dest) > (self.col - 12):
+            pdest = f'{dest[:int((self.col-12)/2)-4]}...{dest[-(int((self.col-12)/2)-4):]}'
+        else:
+            pdest = dest
         source_mime = magic.from_file(source, mime=True)
         if self.overwrite != self.rename:  # when only one (exclusive or XOR) is True
             dest_mime = None
@@ -107,8 +123,7 @@ class MagiCut:
                 dest_mime = magic.from_file(dest, mime=True)
                 if source_mime == dest_mime:  # and not self.overwrite and not self.rename
                     # skip, not overwrite and not rename means skip don't save
-                    print(f'Skip cutting, destination "{dest}" already exist, files have same mime '
-                          f'and you have chosen not to overwrite or rename.')
+                    print(f'{bcolors.WARNING}Skip good "{pdest}"')
                     return ''
                 self._tmp_Overwrite = True
             dest_mime = None
@@ -124,7 +139,7 @@ class MagiCut:
                 fdout.write(buffer)
                 fdout.close()
                 dest_mime = magic.from_file(dest_tmp, mime=True)
-
+        print(f'{bcolors.OKGREEN}Add new > "{pdest}"')
         if source_mime == dest_mime:  # don't care about size but only if are same mime
             return dest_tmp
         else:
@@ -156,6 +171,7 @@ class MagiCut:
 
     def cutter(self):
 
+        print(f'magicut Start, terminal size ({self.col}, {self.row})')
         if self.filename:
             self.cut(self.source_path, self.filename, self.dest_path)
         else:
@@ -167,6 +183,7 @@ class MagiCut:
                         pass
                         if self.delete:
                             os.remove(os.path.join(dirpath, filename))
+        print(f'magicut End!')
 
 
 if __name__ == '__main__':
@@ -181,3 +198,4 @@ if __name__ == '__main__':
         exit(255)
 
     pass
+    print(f'{bcolors.ENDC}')
