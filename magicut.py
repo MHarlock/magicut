@@ -39,7 +39,7 @@ class MagiCut:
 
             mc_args = mc_parser.parse_args()
 
-            source = mc_args.source
+            source = os.path.abspath(mc_args.source)
             destination = mc_args.destination_path
 
             delete = delete if mc_args.delete is None else mc_args.delete
