@@ -82,7 +82,7 @@ class MagiCut:
 
     def isSame(self, source: str, dest: str):
         if os.path.exists(source) and os.path.exists(dest):
-            return os.path.samefile(source, dest)
+            return os.path.samefile(source, dest) and str(source).strip("/") == str(dest).strip("/")
         else:
             if source.rstrip('/') == dest.rstrip('/'):
                 return True
