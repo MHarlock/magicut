@@ -88,6 +88,13 @@ class MagiCut:
                 return True
         return False
 
+    def isSame2(self, source: str, dest: str):
+        if str(source).strip("/") == str(dest).strip("/"):
+            return True
+        elif os.path.exists(source) and os.path.exists(dest):
+            return os.path.samefile(source, dest)
+        return False
+
     def make_path(self, source, dest) -> str:
         if os.path.isfile(dest):
             raise Exception(f'Destination path "{dest}" is not a directory.')
