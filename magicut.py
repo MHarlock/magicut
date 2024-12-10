@@ -22,7 +22,7 @@ class bcolors:  # class for print colored on ANSI terminal
 class MagiCut:
     def __init__(self, source=None, destination=None, delete=False, overwrite=False, rename=True):
 
-        self.col, self.row = shutil.get_terminal_size(fallback=(0, 0)) # os.get_terminal_size()
+        self.col, self.row = shutil.get_terminal_size(fallback=(0, 0))
         if self.col == 0 or self.row == 0:
             print(f'This is not a terminal!!')
         if source is None and destination is None:
@@ -73,11 +73,11 @@ class MagiCut:
             else:
                 self.filename = ''
                 self.source_path = os.path.abspath(source)
-            os.chdir(self.source_path)
-            print(f'CWD: {os.getcwd()}')
+            # os.chdir(self.source_path)
+            # print(f'CWD: {os.getcwd()}')
         else:
             raise FileNotFoundError(source)
-        print(f'__init__ source: {source} - self.source: {self.source_path} - filename: {self.filename}')
+        # print(f'__init__ source: {source} - self.source: {self.source_path} - filename: {self.filename}')
         self.same = self.isSame(self.source_path, self.dest_path)
 
     def isSame(self, source: str, dest: str):
@@ -86,13 +86,6 @@ class MagiCut:
         else:
             if source.rstrip('/') == dest.rstrip('/'):
                 return True
-        return False
-
-    def isSame2(self, source: str, dest: str):
-        if str(source).strip("/") == str(dest).strip("/"):
-            return True
-        elif os.path.exists(source) and os.path.exists(dest):
-            return os.path.samefile(source, dest)
         return False
 
     def make_path(self, source, dest) -> str:
@@ -116,8 +109,8 @@ class MagiCut:
                 _, subdir = os.path.split(source)
             if not os.path.exists(os.path.join(dest, subdir)):
                 os.makedirs(os.path.join(dest, subdir))
-            print(f'make_path: src_tmp: {src_tmp} - tail:{tail}\n           dest: {dest} - subdir: {subdir}')
-            input("wait enter to continue ...")
+            # print(f'make_path: src_tmp: {src_tmp} - tail:{tail}\n           dest: {dest} - subdir: {subdir}')
+            # input("wait enter to continue ...")
             return os.path.join(str(dest), subdir)
 
     def cut(self, source_path, source_file, dest_path):  # source_file = source full pathname; dest_file o dest_path ?
